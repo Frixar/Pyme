@@ -11,6 +11,8 @@
     var id = '';
     var nameU, email, photoUrl, uid, emailVerified;
 
+   
+
        /* Función para obtener datos con firebase*/
     
     
@@ -111,7 +113,8 @@
 
     //var dataSet = [];
     var arrayDatos = [];
-    
+
+
 
   window.addEventListener("DOMContentLoaded", async (e) => {
 
@@ -140,7 +143,7 @@
 
         }
       } else {
-        console.log("no")
+         location.href ="../pyme/login_dist/index.html"
       }
     });
 

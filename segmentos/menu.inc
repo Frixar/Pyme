@@ -103,7 +103,7 @@
       e.preventDefault();
       auth.signOut().then(() => {
           console.log('sign out')
-          location.href ='login_dist'
+          location.href ='login_dist/index.html'
       })
 
   })  

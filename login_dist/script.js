@@ -2,6 +2,18 @@ const signUpButton = document.getElementById('signUp');
 const signInButton = document.getElementById('signIn');
 const container = document.getElementById('container');
 var usuario = firebase.auth().currentUser;
+var errorSpan = document.getElementById("formError");
+var errorSpanLO = document.getElementById("formErrorLO");
+var errorInput = document.getElementById("signup-password");
+
+/*Inputs de login */
+var InputLoginEmail = document.getElementById("login_email");
+var InputLoginPass = document.getElementById("login_password");
+
+/*Inputs de registro */
+var InputSingUpname = document.getElementById("signup-name");
+var InputSignUpemail = document.getElementById("signup-email");
+var InputSignUppass = document.getElementById("signup-password");
 
 firebase.auth().onAuthStateChanged(function(user) {
     if (user) {
@@ -13,6 +25,8 @@ firebase.auth().onAuthStateChanged(function(user) {
 
 
     } else {
+        console.log("que pasa")
+       //location.href ="../login_dist/index.html"
         
     }
   });
@@ -42,6 +56,29 @@ signupForm.addEventListener('submit', (e) => {
         .then(userCredential => {
             signupForm.reset();
             console.log('sign up')
+            
+        }).catch(function(error){
+            var errorCode = error.code;
+            var errorMessage = error.message;
+            console.log(error)
+
+            if (errorCode == 'auth/weak-password') {    
+                errorSpan.innerHTML = "La contraseña debe tener al menos 6 caracteres";
+                InputSignUppass.style.backgroundColor = "#fce4e4";           
+                document.getElementById("signup-password").value="";                
+                return false                
+            }else if (errorCode == 'auth/email-already-in-use') {
+                errorSpan.innerHTML = "El correo electronico ya se encuentra en uso por otra cuenta.";
+                InputSignUpemail.style.backgroundColor = "#fce4e4";
+                document.getElementById("signup-email").value="";
+                return false
+            } else if (errorCode == 'auth/invalid-email') {
+                errorSpan.innerHTML = "El correo electronico no es invalido";
+                InputSignUpemail.style.backgroundColor = "#fce4e4";
+                document.getElementById("signup-email").value="";
+                return false
+                
+            }
         })
 
 })
@@ -59,10 +96,31 @@ signinForm.addEventListener('submit', e =>{
 
     auth.signInWithEmailAndPassword(email, password).then(userCredential => {
         console.log('sign in')
+        var errorCode = error.code;
+        var errorMessage = error.message;
+        console.log(error)
+
+    }).catch(function(error){
+        var errorCode = error.code;
+        var errorMessage = error.message;
+        console.log(error)
+        if (errorCode == 'auth/user-not-found') {    
+            errorSpanLO.innerHTML = "No se encuentra usuario";
+            InputLoginEmail.style.backgroundColor = "#fce4e4";
+            document.getElementById("login_email").value="";
+            return false
+        }else if (errorCode == 'auth/wrong-password') {
+            errorSpanLO.innerHTML = "Contraseña Incorrecta";
+            InputLoginPass.style.backgroundColor = "#fce4e4";
+            document.getElementById("login_password").value="";
+            return false
+        } else{
+            rrorSpanLO.innerHTML = "Error inesperado al iniciar sesión";
+        }
+    })
    
     })
 
-})
 
 /*
 //LOG OUT FIREBASE
@@ -78,44 +136,12 @@ logout.addEventListener('click', e => {
 })
 */
 
-//TRAER DATOS DE FIREBASE
-const postList = document.querySelector('.posts');
-const setupPost = data =>{
-    if(data.length){
-        let html = '';
-        data.forEach(doc =>{
-            const post = doc.data()
-            const li = `
-            <li class="list-group-item list-group-item-action">
-                <h5>${post.titulo}</h5>
-                <p>${post.descripcion}</p>
-            </li>
-            `;
-            html += li; 
-            postList.innerHTML = "picha";
- 
-        });
-        postList.innerHTML = html;
-    }else{
-        postList.innerHTML = '<p classes="text-center"> Login to see posts </p>'
-    }
-}
+
 
 
 //Events
 //list for auth state changes
-auth.onAuthStateChanged(user => {
-    if (user){
-        fs.collection('cliente')
-            .get()
-            .then((snapshot) =>{
-                console.log(snapshot.docs)
-                setupPost(snapshot.docs)
-            })
-    } else{
-        setupPost([])
-    }
-})
+
 
 //LOGIN WITH GOOGLE
 const googleButton = document.querySelector('#googlelogin')
@@ -130,19 +156,40 @@ googleButton.addEventListener('click', e => {
         })
 })
 
-//LOGIN WITH FACEBOOK
 
-const facebookButton = document.querySelector('#facebooklogin')
-facebookButton.addEventListener('click', e=>{
-    e.preventDefault();
-    const provider = new firebase.auth.FacebookAuthProvider();
-    auth.signInWithPopup(provider)
-        .then(result =>{
-            console.log(result)
-            console.log('facebook login')
-            location.href = "../index.php"
-        })
-        .catch(err =>{
-            console.log(err)
-        })
+
+        //TRAER DATOS DE FIREBASE
+const postList = document.querySelector('.posts');
+const setupPost = data =>{
+    if(data.length){
+        let html = '';
+        data.forEach(doc =>{
+            const post = doc.data()
+            const li = `
+            <li class="list-group-item list-group-item-action">
+                <h5>${post.titulo}</h5>
+                <p>${post.descripcion}</p>
+            </li>
+            `;
+            html += li; 
+            //postList.innerHTML = "picha";
+ 
+        });
+        //postList.innerHTML = html;
+    }else{
+        //postList.innerHTML = '<p classes="text-center"> Login to see posts </p>'
+    }
+}
+auth.onAuthStateChanged(user => {
+    if (user){
+        fs.collection('cliente')
+            .get()
+            .then((snapshot) =>{
+                console.log(snapshot.docs)
+                setupPost(snapshot.docs)
+            })
+    } else{
+        setupPost([])
+    }
 })
+
