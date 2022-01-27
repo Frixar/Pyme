@@ -71,7 +71,7 @@
 
                                 <br>
 					            <div class="full-width panel-tittle headerForm text-center">
-                                        <h5>Registro de ventitas</h5>
+                                        <h5>Registro de Ventas</h5>
                                 </div>
                                 <div class = "contenido">
                                     <div class="row ">

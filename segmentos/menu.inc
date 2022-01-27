@@ -11,14 +11,14 @@
     <ul class="nav_list">
       
       <li>
-        <a href="#">
+        <a href="index.php">
           <i class='bx bx-grid-alt' ></i>
           <span class="links_name">Inicio</span>
         </a>
         <span class="tooltip" >Dashboard</span>
       </li>
       <li>
-        <a  href="index.php">
+        <a  href="addCliente.php">
           <i class='bx bx-user' ></i>
           <span class="links_name">Clientes</span>
         </a>
@@ -41,7 +41,7 @@
       <li>
         <a href="inventario.php">
           <i class='bx bx-folder' ></i>
-          <span class="links_name">Analítica</span>
+          <span class="links_name">Productos</span>
         </a>
         <span class="tooltip">Files</span>
       </li>
@@ -52,17 +52,11 @@
         </a>
         <span class="tooltip">Order</span>
       </li>
-      <li>
-        <a href="perfil.php">
-          <i class='bx bx-heart' ></i>
-          <span class="links_name">Perfil</span>
-        </a>
-        <span class="tooltip">Saved</span>
-      </li>
+
       <li>
         <a href="compras.php">
           <i class='bx bx-cog' ></i>
-          <span class="links_name">Otros</span>
+          <span class="links_name">Compras</span>
         </a>
         <span class="tooltip">Setting</span>
       </li>

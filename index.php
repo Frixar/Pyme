@@ -6,6 +6,8 @@
 
         <!-- tabs -->
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
 
          <!-- Estilo Menú -->
         <link rel="stylesheet" href="estilos/menu.css">
@@ -43,9 +45,8 @@
         
     </script>
     </head>
-<body id="body-pd">
-
-        
+    <body class="body-pd">
+                
     <?php
 		include_once("segmentos/menu.inc");
 	?>
@@ -55,197 +56,48 @@
         <div class= "header" id = "userData" style="text-align:right;"></div>
             
         <div class="pad">       
-            <div class="tabCliente">
-                <div class="mdl-tabs mdl-js-tabs mdl-js-ripple-effect">
-                    <div class="tabNav">
+            <div class="mdl-tabs mdl-js-tabs mdl-js-ripple-effect">
 
-                    <ul class="list-inline">
-                        <li class="active" ><a id = "1" onclick = "active(this);" style="color: orange; padding-right: 15px" data-toggle="tab" href="#addCliente">AGREGAR CLIENTE</a></li>
-                        <li><a style="color: gray; padding-left: 15px" id = "2"  onclick = "activeL(this);" data-toggle="tab" href="#listaClientes">LISTA CLIENTES</a></li>
-                    </ul>
-                    </div>
-                    <div class="tab-content">
-                    <div id="addCliente" class="tab-pane fade in active">
-                        <form id="client-form">                  
-                            <div class="container-fluid" >   
+            </div>
 
-                                <br>
-					            <div class="full-width panel-tittle headerForm text-center">
-                                        <h5>Registro de nuevo cliente</h5>
-                                </div>
-                                <div class = "contenido">
-                                    <div class="row ">
-                                        <div class = "col-md-12" style="text-align:left; color:#F39C12;">
-                                            <h5 > Complete el formulario</h5>
-                                            <h6>* Espacios obligatorios</h6>
-                                        </div>
-                                    </div>
-                                    <br>
-                                    <div class="form-group row">
-                                        <label style="color: #154360; font-weight: normal; " class="col-sm-2 col-form-label">Identificaci&oacute;n *</label>
-                                        <div class="col-sm-3">
-                                            <input 
-                                                type="text" 
-                                                id="cedula" 
-                                                class="cedula form-control"
-                                                placeholder="Identificaci&oacute;n"
-                                                required="required"
-                                                autofocus
-                                            />
-                                        </div>
-                                        
-                                    </div>
-                                    <div class="row form-group ">
-                                        <label style="color: #154360; font-weight: normal; " class="col-sm-2 col-form-label">Nombre Completo *</label>
-                                    <div class = " col-sm-6">
-                                            <input 
-                                            type="text" 
-                                            id="nombre" 
-                                            class="form-control"
-                                            placeholder="Nombre Completo"
-                                            required="required"
-                                            />
-                                        </div>
-                                    </div> 
-                                    <div class="form-group  row">   
-                                        <label style="color: #154360; font-weight: normal; " class="col-sm-2 col-form-label">Fecha Nacimiento </label>
-                                    <div class = " col-sm-3">                             
-                                            <input 
-                                            id="fecha" 
-                                            class="date-picker form-control" 
-                                            placeholder="Fecha Nacimiento" 
-                                            type="text" onfocus="this.type='date'" 
-                                            onblur="this.type='text'" onmouseout="timeFunctionLong(this)">
-                                                <script>
-                                                    function timeFunctionLong(input) {
-                                                        setTimeout(function() {
-                                                            input.type = 'text';
-                                                        }, 60000);
-                                                    }
-                                                </script>
-                                        </div>
-                                    </div>     
-                                    <div class="form-group row">
-                                        <label style="color: #154360; font-weight: normal; " class="col-sm-2 col-form-label"> Tel&eacute;fono Celular *</label>
-                                        <div class = " col-sm-4" id = "container">
-                                            <div class="input-group"  id="newInput"  style="display:table">
-                                                <input 
-                                                    type="text" 
-                                                    id="telefono" 
-                                                    class="form-control"
-                                                    placeholder="Tel&eacute;fono"
-                                                    required="required"
-                                                />
-                                                <span class="input-group-btn">
-                                                    <button class="btn btn-default"  style="background-color: orange; color: white; border:transaparent;" type="button"  data-toggle="collapse" data-target="#collapsePhone" aria-expanded="false" aria-controls="collapsePhone"><i class="fas fa-plus"></i></button>
-                                                </span>
-                                            </div>
-                                        </div>
-                                    </div>   
-                                    <div class="collapse" id="collapsePhone">
-                                        <div class="form-group row">
-                                            <label style="color: #154360; font-weight: normal; " class="col-sm-2 col-form-label"></label>
-                                            <div class = " col-sm-4" id = "container">
-                                                <div class="input-group"  id="newInput"  style="display:table">
-                                                    <input 
-                                                        type="text" 
-                                                        id="telefono2" 
-                                                        class="form-control"
-                                                        placeholder="Tel&eacute;fono 2 (Opcional)"
-                                                    />
-                                                    <span class="input-group-btn">
-                                                        <button class="btn btn-default"  style="background-color: orange; color: white; border:transaparent;" type="button" data-toggle="collapse" data-target="#collapsePhone" aria-expanded="false" aria-controls="collapsePhone"><i class="fas fa-minus"></i></button>
-                                                    </span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <label style="color: #154360; font-weight: normal; " class="col-sm-2 col-form-label"> Correo Electr&oacute;nico </label>
-                                        <div class = " col-sm-4" id = "container">
-                                            <div class="input-group"  id="newInput"  style="display:table">
-                                                <input 
-                                                    type="email" 
-                                                    id="correo" 
-                                                    class="form-control"
-                                                    placeholder="Correo"
-                                                />
-                                                <span class="input-group-btn">
-                                                    <button class="btn btn-default"  style="background-color: orange; color: white; border:transaparent;" type="button" data-toggle="collapse" data-target="#collapseEmail" aria-expanded="false" aria-controls="collapseEmail"><i class="fas fa-plus"></i></button>
-                                                </span>
-                                            </div>
-                                        </div>
-                                    </div>    
-                                    <div class="collapse" id="collapseEmail">
-                                        <div class="form-group row">
-                                            <label style="color: #154360; font-weight: normal; " class="col-sm-2 col-form-label"></label>
-                                           <div class = " col-md-4" id = "container">
-                                                
-                                                <div class="input-group"  id="newInput"  style="display:table">
-                                                    <input 
-                                                        type="email" 
-                                                        id="correo2" 
-                                                        class="form-control"
-                                                        placeholder="Correo 2 (Opcional)"
-                                                    />
-                                                    <span class="input-group-btn">
-                                                        <button class="btn btn-default"  style="background-color: orange; color: white; border:transaparent;" type="button" data-toggle="collapse" data-target="#collapseEmail" aria-expanded="false" aria-controls="collapseEmail"><i class="fas fa-minus"></i></button>
-                                                    </span>
-                                                </div>
-                                            </div> 
-                                        </div>
-                                    </div>   
-                                    <div class="form-group row">
-                                        <label style="color: #154360; font-weight: normal; " class="col-sm-2 col-form-label"> Direcci&oacute;n Exacta </label>
-                                    <div class = " col-sm-6">
-                                            <textarea 
-                                            id="direccion" 
-                                            rows="2" 
-                                            class="form-control"
-                                            placeholder="Provincia, Cantón, Distrito, otras señas"
-                                            required="required"
-                                            ></textarea>
-                                        </div>
-                                    </div>    
-                                    <div class="form-group row">
-                                        <div class = "col-md-8" style="text-align:right;">
-                                            <button class="btnClose " ><i class="fas fa-times"></i></button>  
-                                            <button class="confirm btnSave "  id="btn-task-form"><i class="fas fa-check"></i></button>  
-                                            <br><br> 
-                                        </div>  
-                                    </div>   
-                                </div>
-                            </div>   
-                        </form>
-                    </div>
-                    
-	                <div id="listaClientes" class="tab-pane fade">
-                             
-                        <div class="container-fluid" >   
-                            <br>
-                            <div class="full-width panel-tittle headerForm text-center">
-                                <h5>Clientes</h5>
-                            </div>
-                            <div class = "contenido">
-                                <br>
-                                <div class="row container-fluid">
-                                    <div id="buttons"></div>
-                                    <br>
-                                </div>
-                                <div class="loader">
-                                    <div class="linePreloader"></div>
-                                </div>
-                                <div  class = "main">
-                                    <table id="clients" class="display table-striped table-bordered" width="100%"></table> 
-                                </div> 
-                            </div>
+            <div class="container_index">
+                <div class="card-deck">
+                    <!--CARD-->
+                    <div class="card" style="width: 18rem;">
+                        <img src="imagenes/user2.png" class="" > 
+                        <div class="card-body">
+                            <h5 class="card-title"> Clientes</h5>
+                            <p id="conta" class="card-text"></p>
+                            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>                            
                         </div>
                     </div>
+                    <!--CARD-->
+                    <div class="card">
+                        <img src="imagenes/user2.png" class="" > 
+                        <div class="card-body">
+                            <h5 class="card-title">Ventas</h5>
+                            <p id="conta_ventas" class="card-text"></p>
+                            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>                            
+                        </div>
                     </div>
-                    <br><br>
+                    <!--CARD-->
+                    <div class="card">
+                        <img src="imagenes/user2.png" class="" > 
+                        <div class="card-body">
+                            <h5 class="card-title">Proveedores</h5>
+                            <p id="conta_prove" class="card-text"></p>
+                            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>                            
+                        </div>
+                    </div>
+
                 </div>
+
             </div>
+
+            
         </div>
+
+
     </div>
 
    <!-- DataTable/modal -->
@@ -292,7 +144,8 @@
     </script>
     
     <!--=====  JS =====-->
-    <script src="js/client.js"></script>  =
-      <script src="js/preload.js"></script> 
-  </body>
+    <script src="js/index.js"></script> 
+    <script src="js/preload.js"></script> 
+        
+    </body>
 </html>

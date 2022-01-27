@@ -13,8 +13,7 @@
 
    
 
-       /* Función para obtener datos con firebase*/
-    
+       /* Función para obtener datos con firebase*/    
     
        const getClient = () => db.collection('clientes').doc(usuario)
        .collection('listClientes').get(); //lo que se le dice es que desde la base de datos de firebase, obtenga todas las "tasks"   

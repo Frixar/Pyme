@@ -3,7 +3,7 @@ const main = document.querySelector('.main');
 
 function init() {
   setTimeout(() => {
-    loader.style.opacity = 1;
+    loader.style.opacity = "1";
     loader.style.display = 'none';
 
     main.style.display = 'block';
@@ -11,4 +11,4 @@ function init() {
   }, 2000);
 }
 
-init();
+init(); 
